@@ -49,23 +49,23 @@
             @endif
         </div>
         @if ($tizer->in_stock)
-            <div class="bg-green-350 rounded px-1.5 py-1 text-xs text-white mb-3">В наличии</div>
+            <div class="bg-green-350 rounded px-1.5 py-1 text-xs text-white mb-3" style="margin-left: 5px; margin-right: 5px;">В наличии</div>
         @else
-            <div class="bg-yellow-500 rounded px-1.5 py-1 text-xs text-white mb-3">Ожидаем</div>
+            <div class="bg-yellow-500 rounded px-1.5 py-1 text-xs text-white mb-3" style="margin-left: 5px; margin-right: 5px;">Ожидаем</div>
         @endif
         @if ($tizer->in_stock)
             <div class="flex">
-                <a class="@if ($tizer->kaspi) w-2/5 rounded-l @else w-full rounded @endif px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base"
+                <a style="margin-left: 5px; margin-bottom: 5px; @if (!$tizer->kaspi) margin-right: 5px; @endif" class="@if ($tizer->kaspi) w-2/5 rounded-l @else w-full rounded @endif px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base"
                     x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.cart', arguments: { product: {{ $tizer->id }} }})"
                     href="#">Купить</a>
                 @if ($tizer->kaspi)
-                    <a class="w-3/5 px-1.5 lg:px-2 py-2 lg:py-3 rounded-r text-white bg-rg hover:bg-rgh text-sm lg:text-base"
+                    <a style="margin-right: 5px; margin-bottom: 5px;" class="w-3/5 px-1.5 lg:px-2 py-2 lg:py-3 rounded-r text-white bg-rg hover:bg-rgh text-sm lg:text-base"
                         x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.kaspi', arguments: { product: {{ $tizer->id }} }})"
                         href="#">Рассрочка</a>
                 @endif
             </div>
         @else
-            <a href="#"
+            <a style="margin-left: 5px; margin-right: 5px; margin-bottom: 5px;" href="#"
                 x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.preorder', arguments: { product: {{ $tizer->id }} }})"
                 class=" shadow rounded flex gap-2 items-center px-1.5 lg:px-2 py-2 lg:py-3 justify-center text-sm lg:text-base">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
