@@ -22,6 +22,7 @@
         "livewire/livewire": "^3.4",
         "longman/telegram-bot": "^0.82.0",
         "meilisearch/meilisearch-php": "^1.6",
+        "milon/barcode": "^11.0",
         "mobizon/mobizon-php": "^2.0",
         "socialiteproviders/apple": "^5.6",
         "socialiteproviders/mailru": "^4.1",

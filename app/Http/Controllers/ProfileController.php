@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Milon\Barcode\Facades\DNS1DFacade as DNS1D;
 
 class ProfileController extends Controller
 {
@@ -16,8 +17,11 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
+        $barcode = DNS1D::getBarcodeHTML('123456789', 'C39');
+        // dd($request->user());
         return view('profile.edit', [
             'user' => $request->user(),
+            'barcode' => $barcode
         ]);
     }
 
