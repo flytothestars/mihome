@@ -1,0 +1,1 @@
+<b>{{ \Vedmant\LaravelShortcodes\Facades\Shortcodes::render($content) }}</b>

@@ -1,0 +1,35 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-ItncZry8.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/editor.scss": {
+    "file": "assets/editor-ZKPXXym1.css",
+    "src": "resources/css/editor.scss",
+    "isEntry": true
+  },
+  "resources/images/logo.svg": {
+    "file": "assets/logo-C2FxZcXs.svg",
+    "src": "resources/images/logo.svg"
+  },
+  "resources/images/xicon.svg": {
+    "file": "assets/xicon-BqZR8r9z.svg",
+    "src": "resources/images/xicon.svg"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-9l3ViEy7.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-BqK9yIVH.css"
+    ]
+  },
+  "resources/js/editor.js": {
+    "file": "assets/editor-DsCZoPGv.js",
+    "name": "editor",
+    "src": "resources/js/editor.js",
+    "isEntry": true
+  }
+}

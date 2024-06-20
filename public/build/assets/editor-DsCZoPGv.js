@@ -1,0 +1,1 @@
+function n(){document.querySelectorAll(".uk-heading-line").forEach(e=>{if(!e.querySelector("span")){let t=document.createElement("span");t.textContent=e.textContent,e.textContent="",e.appendChild(t)}})}window.addEventListener("load",n);
