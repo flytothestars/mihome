@@ -39,7 +39,7 @@ class Controller extends BaseController
         View::share('shemaBreadCumbs', '');
 
         $advs = [];
-        if (!request()->is('/')) {
+        if (!request()->is('/') && request()->is('/cart')) {
             $advs = DB::table('advs')->where(function (Builder $query) {
                 $query->where('include', !0);
                 $query->whereRaw('"' . request()->fullUrl() . '" LIKE CONCAT("%", url ,"%")');

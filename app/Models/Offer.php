@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use TCG\Voyager\Facades\Voyager;
 use TCG\Voyager\Traits\Translatable;
+use App\Models\Product;
 
 class Offer extends Model
 {
@@ -56,6 +57,11 @@ class Offer extends Model
             get: fn ($value) => (int)$value / 100,
             set: fn ($value) => $value * 100,
         );
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
     }
 
     public function oldPrice(): Attribute

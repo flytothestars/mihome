@@ -3,14 +3,14 @@
         <div class="flex flex-col lg:flex-row lg:items-center gap-3">
             <div class="flex gap-4 grow items-start">
                 <div class="w-24 h-24 bg-center bg-contain bg-no-repeat shrink-0"
-                    style="background-image:url('{{ $item->offer->thumb }}')"></div>
+                    style="background-image:url('/storage/{{ $item->offer->product->images[0]->link }}')"></div>
                 <div class="relative grow">
                     <svg class="w-4 h-4 absolute right-0 top-0" wire:click="remove({{ $item->id }})"
-                        viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"  style="cursor: pointer;">
                         <path d="M1.5 1.5L13.5 13.5M1.5 13.5L13.5 1.5" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" />
                     </svg>
-                    <h5 class="text-lg font-bold mt-0 mb-3 pr-8">{{ $item->offer->name }}</h5>
+                    <h5 class="text-lg font-bold mt-0 mb-3 pr-8"><a href="{{$item->offer->url}}">{{ $item->offer->name }}</a></h5>
                     <div class="text-sm mb-8">Артикул: {{ $item->offer->article }}</div>
                     <div class="flex justify-between items-center">
                         <div class="flex gap-2 items-center">
