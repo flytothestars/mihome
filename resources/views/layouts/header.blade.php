@@ -317,6 +317,7 @@
             {{ menu('top', 'menu.top') }}
 
             <a href="https://translate.google.com/translate?sl=auto&tl=kk&u={{ url()->current() }}"
+                target="_blank"
                 class="flex items-center gap-0.5 text-green-500 hover:text-primary-800">
                 <svg width="20" height="20" viewBox="0 0 20 20" stroke="currentColor">
                     <path fill="none" d="M1,10.5 L19,10.5"></path>
