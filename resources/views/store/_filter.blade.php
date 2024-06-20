@@ -7,7 +7,7 @@
                 d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
         </svg>
     </a>
-    <form class="p-1 bg-white rounded-lg overflow-hidden shadow-lg" x-ref="filterform"
+    <form class="p-1 bg-white rounded-lg overflow-hidden shadow-lg" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);" x-ref="filterform"
         x-bind:class="{ 'hidden lg:block': !filterOpened }"
         action="{{ $category ? $category->url : 'no-category' }}/filter">
         <div class="fixed lg:hidden inset-0 bg-black bg-opacity-25 z-30"></div>
