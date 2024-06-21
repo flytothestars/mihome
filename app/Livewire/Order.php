@@ -19,6 +19,9 @@ use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\User;
+use App\Jobs\SendMailClientJob;
+use App\Jobs\SendMailAdminJob;
 
 #[On('refresh-the-order')]
 class Order extends Component
@@ -137,7 +140,7 @@ class Order extends Component
     {
         $cart = $this->cart;
         $this->paymentMethod = PaymentMethod::find($this->payment_method_id);
-
+        
         DB::beginTransaction();
 
         try {
@@ -168,8 +171,16 @@ class Order extends Component
             DB::rollBack();
         } finally {
         }
-
         DB::commit();
+        
+        
+        //Sending message on mail
+        SendMailClientJob::dispatch($cart,$this->order);
+        $admins = User::where('role_id', 1)->get();
+        foreach($admins as $admin)
+        {
+            SendMailAdminJob::dispatch($cart,$this->order, $admin);
+        }
 
         if ($this->order) {
 
