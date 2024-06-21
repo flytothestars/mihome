@@ -26,10 +26,10 @@ class Cart extends ModalComponent
             'fuser_id' => Auth::check() ? Auth::id() : Session::getId()
         ]);
         $this->added = $added;
-        $this->product = Product::findOrFail($product);
+        $this->product = Product::where('id',$product)->first();
         $this->offer = Offer::find($offer);
     }
-
+    
     public function render()
     {
         if (!$this->offer && $this->product->offers()->count() === 1) $this->offer = $this->product->offers[0];
