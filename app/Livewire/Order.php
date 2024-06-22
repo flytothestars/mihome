@@ -173,7 +173,6 @@ class Order extends Component
         }
         DB::commit();
         
-        
         //Sending message on mail
         SendMailClientJob::dispatch($cart,$this->order);
         $admins = User::where('role_id', 1)->get();
@@ -191,7 +190,9 @@ class Order extends Component
                     'token' => $this->order->token
                 ]);
             } else {
-                return redirect()->route('ru.home');
+                return redirect()->route('ru.order.show', [
+                    'token' => $this->order->token
+                ]);
             }
         }
     }

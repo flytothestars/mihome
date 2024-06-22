@@ -21,7 +21,7 @@
                         </thead>
                         <tbody>
                             @foreach ($orders as $order)
-                                <tr class="border-t">
+                                <tr class="border-t" style="cursor: pointer;" data-href="{{route(app()->getLocale() . '.order.show',['token' => $order->token])}}">
                                     <td class="text-zinc-800 py-2 px-3">
                                         <div class="font-semibold mb-0.5">Заказ №{{ $order->id }}</div>
                                         <div class="text-zinc-400 text-sm">
@@ -69,4 +69,15 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const rows = document.querySelectorAll('tr[data-href]');
+
+            rows.forEach(row => {
+                row.addEventListener('click', function () {
+                    window.location.href = this.dataset.href;
+                });
+            });
+        });
+    </script>
 </x-app-layout>
