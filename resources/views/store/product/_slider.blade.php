@@ -54,7 +54,7 @@
                     class="block lg:pr-0 lg:pb-0 sm:hidden" data-modals-width="100%"
                     data-modals-group="modalvideo" data-modals-navigation="true">
                     <div class="pt-[117.76%] bg-no-repeat bg-center bg-cover relative"
-                        style="background-image:url('{{ $image[1] }}')">
+                        style="background-image:url()">
                         <div
                             class="absolute top-0 left-0 bottom-0 right-0 flex items-center justify-center bg-white opacity-80">
                             <span uk-icon="icon: youtube; ratio: 2" style="color: red;"></span>
@@ -65,7 +65,7 @@
             @if ($image)
                 <a data-fancybox="gallery" href="{{ isset($image[0]) ? $image[0] : '' }}"
                     class="pt-[117.76%] mb-2 bg-no-repeat bg-center bg-cover relative @if (!empty($videoreviews)) last:hidden sm:last:block @endif "
-                    style="background-image:url('{{ $image[1] }}')">
+                    style="background-image:url('{{ $image[0] }}')">
                 </a>
             @endif
         @endforeach
@@ -75,7 +75,7 @@
             @foreach ($offer && !empty($offer->webp) ? $offer->webp : $product->webp as $image)
                 @if ($image)
                     <div class="swiper-slide">
-                        <img class="w-full" src="{{ $image[1] }}" alt="">
+                        <img class="w-full" src="{{ $image[0] }}" alt="">
                     </div>
                 @endif
             @endforeach

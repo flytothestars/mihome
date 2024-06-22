@@ -19,7 +19,7 @@
         </div>
         @if ($component === 'kaspi')
             {{-- <button type="submit" class="addtocart-button  uk-button uk-button-danger">Рассрочка</button> --}}
-            <div class="relative w-40"
+            <div class="relative w-40" style="height: 44px; width: 160px;"
                 x-data='{
                     init(){
                         document.getElementById("dynamic_{{ $offer->id }}").innerHTML = "<div class=\"ks-widget\" data-template=\"button\" data-merchant-sku=\"{{ $offer->article }}\" data-merchant-code=\"VOXM\" data-city=\"750000000\" ></div>"
