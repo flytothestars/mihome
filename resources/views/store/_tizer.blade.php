@@ -1,4 +1,4 @@
-<div class="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg"
+<div class="flex flex-col bg-white rounded-lg overflow-hidden shadow-lg" style="margin: 5px;"
     @if (isset($infiltrable) && $tizer->category) x-show="!category || category.id==={{ $tizer->category->id }}"
     x-init="categories && categories.find(el => el.id === {{ $tizer->category->id }}) || categories.push({
         id: {{ $tizer->category->id }},
