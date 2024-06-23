@@ -18,7 +18,7 @@ class CommentForm extends Component
     public $disadvantages = '';
     public $text = '';
     public $stars = [true, true, true, true, true];
-
+    public $datetime;
     protected $rules = [
         'name' => 'required',
     ];
@@ -31,6 +31,7 @@ class CommentForm extends Component
 
     public function mount($product)
     {
+        $this->datetime = date('Y-m-d');
         $this->name = Auth::check() ? Auth::user()->name : '';
         $this->product = $product;
     }

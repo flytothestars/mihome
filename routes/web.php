@@ -146,6 +146,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('currencies', $namespacePrefix . 'CurrenciesController@index')->name('voyager.currencies.index');
             Route::get('taxes', $namespacePrefix . 'TaxesController@index')->name('voyager.taxes.index');
             Route::get('cards', $namespacePrefix . 'CardsController@index')->name('voyager.cards.index');
+            Route::get('reviews', $namespacePrefix . 'CardsController@index')->name('voyager.reviews.index');
             event(new RoutingAdminAfter());
         });
         event(new RoutingAfter());

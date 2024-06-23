@@ -6,13 +6,13 @@
     <h2 class="text-2xl font-bold">Напишите свой отзыв</h2>
 
     @if (!Auth::check())
-        {{-- <div class="text-sm my-2">
-            Добавьте отзыв, заполнив личные данные, или сначала войдите на сайт, тогда информация будет
-            автоматически взята из профиля.&nbsp;
-            <a href="#">
-                Войти
-            </a>
-        </div> --}}
+    {{-- <div class="text-sm my-2">
+        Добавьте отзыв, заполнив личные данные, или сначала войдите на сайт, тогда информация будет
+        автоматически взята из профиля.&nbsp;
+        <a href="#">
+            Войти
+        </a>
+    </div> --}}
     @endif
 
     <h3 class="text-xl mb-2">
@@ -24,17 +24,17 @@
             <div class="">
                 <div class="flex gap-2">
                     @foreach ($stars as $sdx => $star)
-                        <a href="#" wire:click.prevent="setRate({{ $sdx + 1 }})">
-                            @if ($star)
-                                <svg width="20" height="20" class="active">
-                                    <use xlink:href="/storage/icon_page-product.svg#star_active"></use>
-                                </svg>
-                            @else
-                                <svg width="20" height="20">
-                                    <use xlink:href="/storage/icon_page-product.svg#star"></use>
-                                </svg>
-                            @endif
-                        </a>
+                    <a href="#" wire:click.prevent="setRate({{ $sdx + 1 }})">
+                        @if ($star)
+                        <svg width="20" height="20" class="active">
+                            <use xlink:href="/storage/icon_page-product.svg#star_active"></use>
+                        </svg>
+                        @else
+                        <svg width="20" height="20">
+                            <use xlink:href="/storage/icon_page-product.svg#star"></use>
+                        </svg>
+                        @endif
+                    </a>
                     @endforeach
                 </div>
             </div>
@@ -44,14 +44,16 @@
 
     <div class="">
 
-        @if (!Auth::check())
-            <div class="my-4">
-                <x-input-label for="name" :value="__('Ваше имя')" required="true" />
-                <x-text-input id="name" wire:model="name" type="text" class="mt-1 block w-full" 
-                    autocomplete="name" />
-                <x-input-error class="mt-2" :messages="$errors->get('name')" />
-            </div>
-        @endif
+        <div class="my-4">
+            <x-input-label for="name" :value="__('Ваше имя')" required="true" />
+            <x-text-input id="name" wire:model="name" type="text" class="mt-1 block w-full" autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+        <div class="my-4">
+            <x-input-label for="datetime" :value="__('Дата отзыва')" required="true" readonly/>
+            <x-text-input id="datetime" wire:model="datetime" type="text" class="mt-1 block w-full" autocomplete="datetime" disabled="true" />
+            <x-input-error class="mt-2" :messages="$errors->get('datetime')" />
+        </div>
 
         <div class="my-4">
             <x-input-label for="advantages" :value="__('Преимущества')" required="true" />

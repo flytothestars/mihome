@@ -84,7 +84,7 @@
         </div> --}}
                     <template x-for="review in reviews.data">
                         <div class="my-6">
-                            @include('store.product._reviews._review')
+                            @include('store.product._reviews._new_review')
                         </div>
                     </template>
                     <template x-if="reviews.meta">
