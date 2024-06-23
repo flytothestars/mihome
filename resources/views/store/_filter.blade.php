@@ -50,12 +50,12 @@
                         </div>
                         <div class="flex justify-between items-center py-5">
                             <div>
-                                <input type="text" maxlength="5" x-on:input="mintrigger" x-model="minprice"
-                                    name="minprice" class="px-3 py-2 border border-gray-200 rounded w-24 text-center">
+                                <input type="text" maxlength="8" x-on:input="mintrigger" value="{{$minpricetext}} ₸"
+                                    name="minprice" class="border border-gray-200 rounded text-center" style="width: 115px;">
                             </div>
                             <div>
-                                <input type="text" maxlength="5" x-on:input="maxtrigger" x-model="maxprice"
-                                    name="maxprice" class="px-3 py-2 border border-gray-200 rounded w-24 text-center">
+                                <input type="text" maxlength="8" x-on:input="maxtrigger" value="{{$maxpricetext}} ₸"
+                                    name="maxprice" class="px-3 py-2 border border-gray-200 rounded text-center" style="width: 115px;">
                             </div>
                         </div>
                     </div>
