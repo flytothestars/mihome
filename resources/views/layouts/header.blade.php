@@ -433,7 +433,8 @@
                                                         <a :href="p.url"
                                                             class="relative block lg:w-32 bg-white rounded shadow">
                                                             <div class="w-full pt-[96.25%] bg-cover bg-center"
-                                                                :style="{ backgroundImage: `url('${p.images.length ? p.images[0] : '/storage/no-photo.png'}')` }">
+                                                                :style="{ backgroundImage: `url('${p.images.length ? p.images[0] : '/storage/no-photo.png'}')` }"
+                                                                style="width: 129px;height: calc(129px* 1.176);">
                                                             </div>
                                                             <div class="p-2 text-xs text-zinc-800">
                                                                 <div class="mb-2 line-clamp-3 h-[3rem]"

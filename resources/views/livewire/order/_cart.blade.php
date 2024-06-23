@@ -2,8 +2,11 @@
     @foreach ($cart->items as $item)
         <div class="flex flex-col lg:flex-row lg:items-center gap-3">
             <div class="flex gap-4 grow items-start">
-                <div class="w-24 h-24 bg-center bg-contain bg-no-repeat shrink-0"
-                    style="background-image:url('/storage/{{ $item->offer->product->images[0]->link }}')"></div>
+                <div class="bg-center bg-contain bg-no-repeat shrink-0"
+                    style="background-image:url('/storage/{{ $item->offer->product->images[0]->link }}'); width: 130px;height: calc(130px * 1.176);"></div>
+                    <!-- <div class="image-container">
+                        <img src="https://rent2go.kz/storage/images/products/Xiaomi_Deerma_DX118C8.jpg">
+                    </div> -->
                 <div class="relative grow">
                     <svg class="w-4 h-4 absolute right-0 top-0" wire:click="remove({{ $item->id }})"
                         viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"  style="cursor: pointer;">
