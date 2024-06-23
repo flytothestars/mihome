@@ -38,7 +38,6 @@ class CatalogController extends Controller
 
         $path = explode('/filter', $path);
         $catSlugs = explode('/', trim($path[0], '/'));
-
         $filter = [];
         $minprice = Product::getMinPrice();
         $maxprice = Product::getMaxPrice();
@@ -148,17 +147,40 @@ class CatalogController extends Controller
         } else {
         }
 
+        $brand_array = [];
+        foreach($category->products as $product)
+        {
+            $brand_array['brands'][] = [
+                'value' => $product->brand->slug,
+                'label' => $product->brand->name,
+            ];
+        }
+        $uniqueBrands = []; // Массив для хранения уникальных значений по ключу "value"
+
+        foreach ($brand_array['brands'] as $brand) {
+            $value = $brand['value'];
+            if (!isset($uniqueBrands[$value])) {
+                // Если такого значения еще нет в $uniqueBrands, добавляем его
+                $uniqueBrands[$value] = $brand;
+            }
+        }
+        // Преобразуем $uniqueBrands обратно в индексированный массив
+        $uniqueArray = array_values($uniqueBrands);
+        $brands['brands'] = $uniqueArray;
+        $all_filters = array_merge($brands,$category->filters);
+
         $data = [
             'tree' => $tree,
             'pagetitle' => $pagetitle,
             'category' => $category,
             'filter' => $filter,
-            'filters' => $category ? $category->filters : null,
+            'filters' => $category ? $all_filters : null,
             'minprice' => $category && isset($category->min) ? $category->min : $minprice,
             'maxprice' => $category && isset($category->max) ? $category->max : $maxprice,
+            'minpricetext' => $category && isset($category->min) ? number_format($category->min, 0, '.', ' ') : number_format($minprice, 0, '.', ' '),
+            'maxpricetext' => $category && isset($category->max) ? number_format($category->max, 0, '.', ' ') : number_format($maxprice, 0, '.', ' '),
             'products' => $products,
         ];
-
         return view('store.category', $data);
     }
 
