@@ -10,7 +10,7 @@
         <div class="sticky top-16 lg:top-16 z-20 bg-white border-b xl:mb-8">
             @include('store.product._nav')
         </div>
-        <div class="container">
+        <div class="" style="width: 100%;margin-right: auto;margin-left: auto;">
             <a class="relative -top-40" id="main"></a>
             <div class="flex gap-6 mb-5 mt-5 flex-col lg:flex-row">
                 @include('store.product._slider')
