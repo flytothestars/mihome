@@ -50,6 +50,8 @@ class Controller extends BaseController
             $advs = Adv::whereIn('id', $advs)->limit(3)->get();
         }
         View::share('advs', $advs);
+        View::share('meta_image', '');
+        View::share('meta_url', '');
 
         // Cache::flush();
         View::share('meta_title', setting('site.title-' . app()->getLocale()));

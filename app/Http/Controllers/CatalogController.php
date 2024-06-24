@@ -203,8 +203,8 @@ class CatalogController extends Controller
         if (!$offer && $productModel->offers->count() === 1) $offer = $productModel->offers()->first();
 
         View::share('meta_title', $productModel->meta_title ?: ($productModel->getTranslatedAttribute('name') . " - цена, купить в кредит, рассрочку в Алматы"));
-
-
+        View::share('meta_url', $productModel->url);
+        View::share('meta_image', request()->getSchemeAndHttpHost() . '/storage/' . $productModel->images[0]->link);
         if ($productModel->metadesc) {
             View::share('meta_description', $productModel->metadesc);
         } elseif ($productModel->short_metadesc) {
