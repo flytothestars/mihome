@@ -48,21 +48,51 @@ class Import extends Command
         $this->start = now();
         $host = "185.98.5.218";
         $connect = ftp_connect($host);
-        $user = "v-9789_upload";
-        $password = "iR?38ye8";
+        // $user = "v-9789_upload";
+        // $password = "iR?38ye8";
+        $maxRetries = 5; // Максимальное количество попыток подключения
+        $retryDelay = 5; // Задержка между попытками в секундах
+        $connected = false; // Флаг успешного подключения
+        $fileDownloaded = false; // Флаг успешной загрузки файла
+
+        $user = "anuar_hyper";
+        $password = "Jtke701_5";
+        for ($attempt = 0; $attempt < $maxRetries; $attempt++) {
+            if (@ftp_login($connect, $user, $password)) {
+                $connected = true;
+                break;
+            }
+            sleep($retryDelay); // Ожидание перед следующей попыткой
+        }
+        
+        if (!$connected) {
+            // Если не удалось подключиться, выбрасываем исключение или выводим ошибку
+            throw new Exception("Не удалось подключиться к FTP серверу после $maxRetries попыток");
+        }
         // ftp_login($connect, $user, $password);
         @Storage::makeDirectory('/tmp');
         @Storage::makeDirectory('/cache');
         $dest = Storage::path('/tmp/OstatkiSaitNew.xml');
         $newfile =  Storage::path('/cache/OstatkiSaitNew.xml');
-        // ftp_get($connect, $newfile, '/upload/OstatkiSaitNew.xml',  FTP_BINARY);
-
-        Storage::put($dest, preg_replace('/^<items>(.+)$/', '<items>', Storage::get($dest)));
+        // ftp_get($connect, $newfile, '/tmp/OstatkiSaitNew.xml',  FTP_BINARY);
+        for ($attempt = 0; $attempt < $maxRetries; $attempt++) {
+            if (@ftp_get($connect, $newfile, '/tmp/OstatkiSaitNew.xml', FTP_BINARY)) {
+                $fileDownloaded = true;
+                break;
+            }
+            sleep($retryDelay); // Ожидание перед следующей попыткой
+        }
+        
+        if (!$fileDownloaded) {
+            // Если не удалось загрузить файл, выбрасываем исключение или выводим ошибку
+            throw new Exception("Не удалось загрузить файл с FTP сервера после $maxRetries попыток");
+        }
+        // Storage::put($dest, preg_replace('/^<items>(.+)$/', '<items>', Storage::get($dest)));
         if (1 || md5_file($newfile) != md5_file($dest)) {
-            //     copy($newfile, $dest);
-            //     unlink($newfile);
+            copy($newfile, $dest);
+            unlink($newfile);
             self::webi_xml($dest);
-            foreach (Offer::where('exchange', '<', $this->start)->orWhereNull('exchange')->get() as $offer) $offer->delete();
+            // foreach (Offer::where('exchange', '<', $this->start)->orWhereNull('exchange')->get() as $offer) $offer->delete();
             // self::exportKaspiXml();
             // self::exportKaspiBotXml();
             // self::exportFacebookXml();
@@ -117,13 +147,16 @@ class Import extends Command
         //     <price_min>46990</price_min>  - не учитывать
         //     <weight>0,53</weight> - вес
         // </item>
-
         $product = Offer::where('article', (string)$xml->id)->first();
         if (!$product) {
             dump('нет товара ' . (string)$xml->id . ' ' . (string)$xml->name);
             return;
         }
-
+        $komek = Offer::whereNotNull('alstyle')
+        ->where('alstyle', '!=', '')
+        ->where('in_stock', '0')
+        ->first();
+        dd($komek); 
         $product->product->restore();
 
         $product->exchange = $this->start;
@@ -141,8 +174,9 @@ class Import extends Command
         $product->weight = (float)str_replace(",", ".", (string)$xml->weight);
         $product->product->weight = (float)$product->weight;
 
-        if (false && $product->in_stock == 0 && $product->alstyle != null) {
-            // $dataAlStyle = $this->getAlStyleProduct($product);
+        if ($product->in_stock == 0 && $product->alstyle != null) {
+            dd('asd');
+            $dataAlStyle = $this->getAlStyleProduct($product);
             // dump('наличиее у Вендера: ' . $dataAlStyle[$product->alstyle]['quantity'] . ', ');
             // if ((str_replace('>', '', $dataAlStyle[$product->alstyle]['quantity'])) > 3 and ($dataAlStyle[$product->alstyle]['price2'] / $dataAlStyle[$product->alstyle]['price1']) > 1.17) {
             //     $product->stock = !0;
@@ -160,7 +194,7 @@ class Import extends Command
             $product->old_price = (float)$xml->price_basic;
             $product->price = (float)$xml->price;
         }
-
+        dd('stop');
         if ($product->in_stock > 0) $this->sendSms($product);
 
         $this->count_update++;

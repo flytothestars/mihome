@@ -2,7 +2,13 @@
     <h2 class="text-lg font-medium text-gray-900">
         {{ __('Profile Information') }}
     </h2>
-
+    @if(isset($user->phone))
+        {!! $barcode !!}
+    @else
+    <p class="mt-1 text-sm text-gray-600">
+        {{ __("Check phone") }}
+    </p>
+    @endif
     <p class="mt-1 text-sm text-gray-600">
         {{ __("Update your account's profile information and email address.") }}
     </p>
@@ -20,6 +26,14 @@
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full uk-input" :value="old('name', $user->name)"
                 required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+           
+        <div>
+            <x-input-label for="phone" :value="__('Phone')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full uk-input" :value="old('phone', $user->phone)"
+                required autofocus autocomplete="phone" aria-placeholder="87774446633" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div>

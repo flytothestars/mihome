@@ -1,13 +1,13 @@
 <div class="max-w-full lg:max-w-[12.75rem] xl:max-w-[19.25rem] flex sm:block">
     <div class="relative w-[calc(81.675%)] sm:w-full shrink-0 pb-2 pr-2 lg:pr-0">
-        <a class="swiper-prev absolute top-1/2 -translate-y-1/2 -left-3 z-10 flex justify-center items-center rounded-full w-10 h-10 border-2 border-[rgba(88,69,61,.5)] bg-white bg-opacity-80"
+        <a class="swiper-prev swiper-hov absolute top-1/2 -translate-y-1/2 -left-3 z-10 flex justify-center items-center rounded-full w-10 h-10 border-2 border-[rgba(88,69,61,.5)] bg-white bg-opacity-80"
             href="#">
             <svg width="14" height="24" viewBox="0 0 14 24" class="-translate-x-px stroke-green-500">
                 <polyline fill="none" stroke-width="1.4" points="12.775,1 1.225,12 12.775,23">
                 </polyline>
             </svg>
         </a>
-        <div class="swiper" x-ref="slider">
+        <div class="swiper p-0" x-ref="slider">
             <div class="swiper-wrapper">
                 @foreach ($offer && !empty($offer->webp) ? $offer->webp : $product->webp as $image)
                     @if ($image)
@@ -20,14 +20,14 @@
                 @endforeach
             </div>
         </div>
-        <a class="swiper-next absolute top-1/2 -translate-y-1/2 -right-3 z-10 flex justify-center items-center rounded-full w-10 h-10 border-2 border-[rgba(88,69,61,.5)] bg-white bg-opacity-80"
+        <a class="swiper-next swiper-hov absolute top-1/2 -translate-y-1/2 -right-3 z-10 flex justify-center items-center rounded-full w-10 h-10 border-2 border-[rgba(88,69,61,.5)] bg-white bg-opacity-80"
             href="#">
             <svg width="14" height="24" viewBox="0 0 14 24" class="translate-x-px stroke-green-500">
                 <polyline fill="none" stroke-width="1.4" points="1.225,23 12.775,12 1.225,1">
                 </polyline>
             </svg>
         </a>
-        <div class="swiper-pagination relative"></div>
+        <!-- <div class="swiper-pagination relative"></div> -->
     </div>
     <div class="flex flex-col justify-center sm:grid sm:grid-cols-4 lg:gap-2 shrink-0 grow">
         @foreach ($offer && !empty($offer->webp) ? $offer->webp : $product->webp as $key => $image)

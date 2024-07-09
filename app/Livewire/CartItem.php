@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Livewire\Component;
 
@@ -17,6 +18,7 @@ class CartItem extends Component
     public $quantity;
     public $component;
     public $added = false;
+    public $favorite = false;
 
     public function mount($offer = null, $quantity = 1, $component = 'cart')
     {
@@ -27,6 +29,9 @@ class CartItem extends Component
         $this->offer = Offer::find($offer);
         $this->quantity = $quantity;
         $this->component = $component;
+        $favorite = Favorite::where('user_id', Auth::id())->where('product_id',$this->offer->product->id)->first();
+        if($favorite) $this->favorite = true;
+        else $this->favorite = false;
     }
 
     public function addtocart()
@@ -44,6 +49,18 @@ class CartItem extends Component
             'offer' =>  $this->offer->id,
             'added' =>  $this->quantity
         ]);
+    }
+
+    public function addtofavorite()
+    {
+        if (!$this->offer) return;
+        $this->favorite = true;
+        Favorite::create([
+            'user_id' => Auth::id(),
+            'product_id' => $this->offer->product->id
+        ]);
+        $this->dispatch('refresh-the-cart');
+        
     }
 
     public function render()

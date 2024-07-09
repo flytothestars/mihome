@@ -18,6 +18,7 @@ class Cart extends ModalComponent
     public $product;
     public $offer;
     public $added = 1;
+    public $kaspi = false;
 
     public function mount($product, $offer = null, $added = 1)
     {
@@ -33,8 +34,8 @@ class Cart extends ModalComponent
     public function render()
     {
         if (!$this->offer && $this->product->offers()->count() === 1) $this->offer = $this->product->offers[0];
-        if (!$this->offer) return view('livewire.modals.cart.offers');
-
+        if (!$this->offer || $this->kaspi) return view('livewire.modals.cart.offers');
+        
         $this->cart->items()->updateOrCreate([
             'offer_id' => $this->offer->id
         ], [

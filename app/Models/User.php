@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Product;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -22,6 +23,7 @@ class User extends \TCG\Voyager\Models\User
         'name',
         'email',
         'password',
+        'phone',
     ];
 
     /**
@@ -52,5 +54,10 @@ class User extends \TCG\Voyager\Models\User
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Product::class, 'favorites');
     }
 }

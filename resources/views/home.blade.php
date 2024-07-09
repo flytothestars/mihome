@@ -68,13 +68,13 @@
             <div class="text-2xl mb-5 font-bold text-center uk-heading-line text-gray-500"> <span>Популярные
                     товары</span> </div>
             <ul class="m-0 p-0 mb-5 flex gap-2.5 items-center justify-center flex-wrap text-sm">
-                <li class="rounded py-0.5 px-1.5 "
+                <li class="rounded py-0.5 px-1.5 btn-all pt-2"
                     :class="!popularCategory ? 'bg-green-400 text-white' : 'bg-gray-200 hover:bg-gray-300'">
                     <a class="subnavstyle" href="#" role="button" x-on:click.prevent="popularCategory=null">Все
                         товары</a>
                 </li>
                 <template x-for="(cat,cdx) in popularCategories">
-                    <li class="rounded py-0.5 px-1.5 "
+                    <li class="rounded py-0.5 px-1.5 btn-all pt-2"
                         :class="popularCategory && popularCategory.slug === cat.slug ? 'bg-green-400 text-white' :
                             'bg-gray-200 hover:bg-gray-300'">
                         <a class="subnavstyle" href="#" x-on:click.prevent="popularCategory=cat" role="button"
@@ -247,5 +247,6 @@
                 </a>
             </div>
         </section>
+
     </div>
 </x-app-layout>

@@ -10,9 +10,9 @@
         <div class="sticky top-16 lg:top-16 z-20 bg-white border-b xl:mb-8">
             @include('store.product._nav')
         </div>
-        <div class="responsive-container">
+        <div class="container p-0">
             <a class="relative -top-40" id="main"></a>
-            <div class="flex gap-6 mb-5 mt-5 flex-col lg:flex-row">
+            <div class="flex gap-6 mb-5 mt-5 flex-col lg:flex-row p-1">
                 @include('store.product._slider')
                 <div class="grow">
                     <h1 class="font-bold text-xl lg:text-2xl border-l-4 border-green-600 pl-2 mb-3 lg:mb-5">
@@ -74,7 +74,6 @@
                                         }
 
                                     @endphp
-
                                     <a data-modals href="{{ $videoreview }}" rel="nofollow" data-modals-height="100%"
                                         data-modals-width="100%" data-modals-group="modalvideo"
                                         data-modals-navigation="true">

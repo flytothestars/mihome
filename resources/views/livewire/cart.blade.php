@@ -1,5 +1,5 @@
 <div>
-    <a class="flex items-center gap-2 px-3 py-3 text-white transition bg-green-200 rounded hover:bg-green-250 xl:px-4 hidden lg:flex"
+    <a class="flex items-center btn-all gap-2 px-3 py-3 text-white transition bg-green-200 rounded hover:bg-green-250 xl:px-4 hidden lg:flex"
         href="/cart">
         <svg width="20" height="20" viewBox="0 0 20 20">
             <circle cx="7.3" cy="17.3" r="1.4" fill="currentColor"></circle>

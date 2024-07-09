@@ -221,14 +221,14 @@
                                     onfocus="this.removeAttribute('readonly');">
                             </div>
                             <div class="details-button uk-width-auto">
-                                <button id="save-button" class="uk-button uk-button-primary" type="button"
+                                <button id="save-button" class="uk-button btn-all uk-button-primary" type="button"
                                     value="Сохранить" onclick="applycoupon();"> Сохранить
                                 </button>
                             </div>
                             <div id="coupon_code_txt"
                                 class="uk-width-1-1 uk-container-center uk-grid-margin uk-first-column"></div>
                             <div class="deletecoupon-button uk-grid-margin uk-first-column">
-                                <button id="delete-button" class="uk-button uk-button-primary uk-button-small"
+                                <button id="delete-button" class="uk-button btn-all uk-button-primary uk-button-small"
                                     type="button" value="Удалить" onclick="deletecoupon();" style="display: none;">
                                     Удалить
                                 </button>

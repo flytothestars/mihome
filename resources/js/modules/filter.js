@@ -8,6 +8,10 @@ export default (minprice, maxprice, filter = {}) => ({
     timeout: 0,
     filterOpened: false,
 
+    formatNumber(value) {
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + " ₸";
+    },
+
     mintrigger() {
         this.minprice = Math.min(this.minprice, this.maxprice - 500);
         this.minthumb = ((this.minprice - this.min) / (this.max - this.min)) * 100;

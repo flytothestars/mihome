@@ -86,7 +86,7 @@
                                                                 class="uk-modal-close uk-float-left uk-special-cartclose uk-link uk-button uk-button-primary uk-width-1-1 uk-width-auto@l uk-width-auto@m uk-width-auto@s uk-margin-small-bottom"
                                                                 href="#">Продолжить
                                                                 покупки</a><a
-                                                                class="show-shop-btn uk-link uk-float-right uk-button uk-button-primary uk-special-addtocart uk-width-1-1 uk-width-auto@l uk-width-auto@m uk-width-auto@s uk-margin-small-bottom"
+                                                                class="show-shop-btn btn-all uk-link uk-float-right uk-button uk-button-primary uk-special-addtocart uk-width-1-1 uk-width-auto@l uk-width-auto@m uk-width-auto@s uk-margin-small-bottom"
                                                                 href="/cart" target="_parent">
                                                                 <span uk-icon="icon: cart"
                                                                     class="uk-margin-small-right uk-icon"></span>Показать
@@ -110,12 +110,12 @@
                                                 </span>
                                                 <span class="quantity-controls js-recalculate uk-button-group">
                                                     <button type="button" x-on:click="quantity++"
-                                                        class="quantity-controls quantity-plus uk-button uk-button-default">
+                                                        class="quantity-controls btn-all quantity-plus uk-button uk-button-default">
                                                         +
                                                     </button>
                                                     <button type="button"
                                                         x-on:click="quantity > 1 ? quantity-- : null"
-                                                        class="quantity-controls quantity-minus uk-button uk-button-default">
+                                                        class="quantity-controls btn-all quantity-minus uk-button uk-button-default">
                                                         -
                                                     </button>
                                                 </span>

@@ -7,7 +7,6 @@
                 ])
             </div>
             <div class="grow">
-                {!! $barcode !!}
                 @include('profile.partials.update-profile-information-form')
             </div>
         </div>

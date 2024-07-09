@@ -427,3 +427,30 @@ button-group>.uk-button:first-child,
 .x-cloak {
     display: none !important;
 }
+.btn-all{
+    height:44px!important;
+    font-size:16px!important;
+}
+
+.img-width .variable:first-child {
+    display: block;
+}
+
+.img-width .variable:last-child {
+    display: none;
+    /* background-image:url("../images/vector_star.png") */
+}
+
+@media (max-width: 960px) {
+    .img-width .variable:first-child {
+        display: none;
+   }
+    .img-width .variable:last-child {
+        display: block;
+        /* background-image:url("../images/vector_star.png") */
+   }
+   .btn-all{
+    font-size:10px!important;
+}
+}
+

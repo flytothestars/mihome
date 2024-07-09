@@ -65,6 +65,16 @@ class Order extends Model
         return $this->belongsTo(DeliveryMethod::class);
     }
 
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, Offer::class);
+    }
+
     /**
      * Relationship with user model.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

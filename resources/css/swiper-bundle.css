@@ -733,3 +733,16 @@ button.swiper-pagination-bullet {
           backface-visibility: hidden;
   overflow: hidden;
 }
+
+.swiper-hov{
+  display:none!important;
+}
+.max-w-full:hover .swiper-hov{
+  display:flex!important;
+}
+
+@media (min-width: 992px) {
+  .swiper {
+    padding: 0 3px 0 3px;
+  }
+}

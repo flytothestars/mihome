@@ -19,7 +19,7 @@ use TCG\Voyager\Traits\Translatable;
 use Laravel\Scout\Searchable;
 use Meilisearch\Endpoints\Indexes;
 use TCG\Voyager\Facades\Voyager;
-
+use App\Models\User;
 class Product extends Model
 {
     use GetRelationshipKey,
@@ -422,5 +422,15 @@ class Product extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'favorites');
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

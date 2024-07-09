@@ -47,7 +47,7 @@
                 <div class="py-6">
                     {{-- <div class="product__reviews-sorting-block">
             <a href="#comments__sorting"
-                class="btn btn__white btn__block popup__link-js product__reviews-sorting-button">
+                class="btn btn-all btn__white btn__block popup__link-js product__reviews-sorting-button">
                 <svg width="14" height="12">
                     <use xlink:href="/storage/icons.svg#sorting"></use>
                 </svg>
@@ -80,7 +80,7 @@
 
                 </div>
             </div>
-            <a href="#" id="new-comment-button" class="btn btn__red">Добавить отзыв</a>
+            <a href="#" id="new-comment-button" class="btn btn-all btn__red">Добавить отзыв</a>
         </div> --}}
                     <template x-for="review in reviews.data">
                         <div class="my-6">

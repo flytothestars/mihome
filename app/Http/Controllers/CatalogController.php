@@ -7,6 +7,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Property;
 use App\Models\PropertyValue;
+use App\Models\ViewedProduct;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\View;
 use Meilisearch\Endpoints\Indexes;
 use Spatie\SchemaOrg\Schema;
 use TCG\Voyager\Facades\Voyager;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Favorite;
 
 class CatalogController extends Controller
 {
@@ -117,11 +120,12 @@ class CatalogController extends Controller
             $rating = 0;
             $ratingcount = 0;
             $offers = [];
-
-            foreach ($products as $product) {
+            $maxPrice = [];
+            foreach ($products as $key => $product) {
                 $offers[] = Schema::offer()->url($product->url);
                 $ratingcount += $product->ratingcount;
-                $rating += ($product->ratingcount * $rating);
+                $rating += ($product->ratingcount * $product->rating);
+                $maxPrice[$key] = $product->getMaxPrice();
             }
 
             $shemaCategory->aggregateRating(
@@ -129,6 +133,7 @@ class CatalogController extends Controller
                     ->bestRating(5)
                     ->ratingCount($ratingcount)
                     ->ratingValue($ratingcount ? round($rating / $ratingcount, 1) : 0)
+                    ->highPrice($maxPrice)
             );
 
             $shemaCategory->offers(
@@ -145,29 +150,37 @@ class CatalogController extends Controller
                 $shemaCategory
             );
         } else {
+
         }
 
         $brand_array = [];
+        if(!empty($category->products)){
         foreach($category->products as $product)
         {
-            $brand_array['brands'][] = [
-                'value' => $product->brand->slug,
-                'label' => $product->brand->name,
-            ];
-        }
-        $uniqueBrands = []; // Массив для хранения уникальных значений по ключу "value"
-
-        foreach ($brand_array['brands'] as $brand) {
-            $value = $brand['value'];
-            if (!isset($uniqueBrands[$value])) {
-                // Если такого значения еще нет в $uniqueBrands, добавляем его
-                $uniqueBrands[$value] = $brand;
+            if(!empty($product->brand->slug))
+            {
+                $brand_array['brands'][] = [
+                    'value' => $product?->brand?->slug,
+                    'label' => $product?->brand?->name,
+                ];   
             }
         }
-        // Преобразуем $uniqueBrands обратно в индексированный массив
-        $uniqueArray = array_values($uniqueBrands);
-        $brands['brands'] = $uniqueArray;
-        $all_filters = array_merge($brands,$category->filters);
+        }
+        $uniqueBrands = []; // Массив для хранения уникальных значений по ключу "value"
+        if(!empty($brand_array)){
+            foreach ($brand_array['brands'] as $brand) {
+                $value = $brand['value'];
+                if (!isset($uniqueBrands[$value])) {
+                    // Если такого значения еще нет в $uniqueBrands, добавляем его
+                    $uniqueBrands[$value] = $brand;
+                }    
+                $uniqueArray = array_values($uniqueBrands);
+                $brands['brands'] = $uniqueArray;
+                $all_filters = array_merge($brands,$category->filters);
+            }
+        }else {
+            $all_filters = $category?->filters;
+        }
 
         $data = [
             'tree' => $tree,
@@ -187,8 +200,12 @@ class CatalogController extends Controller
     public function product($product)
     {
         Storage::deleteDirectory('tmp/' . Session::getId());
-
         $productModel = Product::where('slug', $product)->withTrashed()->first();
+
+        ViewedProduct::create([
+            'user_id' => Auth::check() ? Auth::id() : Session::getId(),
+            'product_id' => $productModel->id
+        ]);
 
         $offer = null;
         if (!$productModel) {
@@ -251,27 +268,77 @@ class CatalogController extends Controller
             'shemaProduct',
             $shemaProduct
         );
-
+        $favorite = Favorite::where('user_id', Auth::id())->where('product_id',$productModel->id)->first();
+        
         $data = [
+            'favorite' => $favorite,
             'product' => $productModel,
             'products' => $productModel->categoryProducts()->limit(10)->get(),
             'populars' => $productModel->popular()->limit(10)->get(),
             'offer' => $offer,
         ];
-
+        // dd($data);
         return view('store.product', $data);
     }
 
+    public function favorite($product)
+    {
+        Favorite::create([
+            'user_id' => Auth::id(),
+            'product_id' => $product
+        ]);
+        return redirect()->back();
+    }
+
+    public function unfavorite($product)
+    {
+        $favorite = Favorite::where('user_id', Auth::id())
+                        ->where('product_id', $product)
+                        ->first();
+
+        if ($favorite) {
+            $favorite->delete();
+        }
+        return redirect()->back();
+    }
+    
     private function getShemaOffer($o)
     {
+        $validFrom = new \DateTime('2 days ago');
+        $validFrom->setTime(0, 0, 0);
+        $validThrough = new \DateTime('now');
+        $validThrough->add(new \DateInterval('P3D'));
+        $validThrough->setTime(23, 59, 59);
+
+        if($o->in_stock > 0)	{
+            $stock = "https://schema.org/InStock";
+        }
+        else if($o->price > 100)    {
+            $stock = "https://schema.org/OutOfStock";
+        }
+        else    {
+            $stock = "https://schema.org/SoldOut";
+        }
         return Schema::offer()
             ->price($o->price)
             ->priceCurrency('KZT')
+            ->sale_price($o->old_price)
+            ->validFrom($validFrom->format('Y-m-d H:i:s') . PHP_EOL)
+            ->validThrough($validThrough->format('Y-m-d H:i:s') . PHP_EOL)
             ->name($o->getTranslatedAttribute('name'))
             ->url($o->url)
-            ->itemCondition(Schema::offerItemCondition("NewCondition"))
-            ->availability(Schema::itemAvailability("InStock"))
+            ->itemCondition('https://schema.org/NewCondition')
+            ->availability($stock)
             ->priceValidUntil((new Carbon())->endOfYear()->addYear()->format("Y-m-d"))
+            ->hasMerchantReturnPolicy(
+                Schema::MerchantReturnPolicy()
+                    ->merchantReturnLink('https://rent2go.kz/informaciya/vozvrat-tovarov')
+		            ->applicableCountry('KZ')
+		            ->merchantReturnDays(14)
+		            ->returnPolicyCategory('https://schema.org/MerchantReturnFiniteReturnWindow')
+		            ->returnMethod('https://schema.org/ReturnByMail')
+		            ->returnFees('https://schema.org/FreeReturn')
+            )
             ->shippingDetails(
                 Schema::OfferShippingDetails()
                     ->shippingRate(

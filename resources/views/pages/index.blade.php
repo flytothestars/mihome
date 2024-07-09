@@ -6,7 +6,7 @@
                 @foreach ($pages as $page)
                     @if (isset($page['url']) && isset($page['title']))
                         <div
-                            class="el-item uk-card uk-card-default uk-card-small uk-card-body uk-margin-remove-first-child">
+                            class="btn-all el-item uk-card uk-card-default uk-card-small uk-card-body uk-margin-remove-first-child">
                             <h3 class="el-title uk-h5 uk-heading-bullet uk-margin-top uk-margin-remove-bottom">
                                 <a href="{{ $page['url'] }}" class="uk-link-reset">{{ $page['title'] }}</a>
                             </h3>

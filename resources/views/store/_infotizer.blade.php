@@ -8,7 +8,7 @@
         <a href="{{ $tizer->url }}"
             class="block h-12 mb-5 text-ellipsis line-clamp-2">{{ $tizer->getTranslatedAttribute('name') }}</a>
         <div class="mb-5 text-sm text-ellipsis overflow-hidden whitespace-nowrap">{{ $tizer->getTranslatedAttribute('description') }}</div>
-        <div class="flex items-center justify-between lg:justify-center gap-1 lg:gap-6">
+        <div class="flex items-center justify-center lg:justify-center gap-1 lg:gap-6">
             @if ($tizer->old_price && $tizer->old_price > $tizer->price)
                 <strong
                     class="block mb-5 font-semibold text-green-300 -tracking-[0.5px] whitespace-nowrap">{{ number_format($tizer->price, 0, '.', ' ') . ' ₸' }}</strong>

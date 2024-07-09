@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div id="tm-dialog-mobile" class="uk-modal-full" uk-modal>
-                <div class="uk-modal-dialog uk-flex"> <button class="uk-modal-close-full uk-close-large" type="button"
+                <div class="uk-modal-dialog uk-flex"> <button class="uk-modal-close-full uk-close-large btn-all" type="button"
                         uk-close
                         uk-toggle="cls: uk-modal-close-full uk-close-large uk-modal-close-default; mode: media; media: @s"></button>
                     <div class="uk-modal-body uk-padding-large uk-margin-auto uk-flex uk-flex-column uk-box-sizing-content uk-width-auto@s"
@@ -162,7 +162,7 @@
                                                         class="uk-margin-small-right"></span> Корзина - <span
                                                         class="total"> 0 ₸ </span> </a>
                                                 <div id="cartmodal" class="vmCartModule_container" uk-modal>
-                                                    <div class="uk-modal-dialog"> <button class="uk-modal-close-default"
+                                                    <div class="uk-modal-dialog"> <button class="btn-all uk-modal-close-default"
                                                             type="button" uk-close></button>
                                                         <div class="uk-modal-header">
                                                             <h2 class="uk-modal-title">Корзина</h2>
@@ -173,7 +173,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="uk-modal-footer uk-text-right"> <button
-                                                                class="uk-button uk-button-default uk-modal-close"
+                                                                class="uk-button btn-all uk-button-default uk-modal-close"
                                                                 type="button">закрыть</button> <a id="showcartbtn"
                                                                 class="uk-button uk-button-primary"
                                                                 href="/store/cart"><span uk-icon="icon: cart"
@@ -9407,13 +9407,13 @@
                             <div class="uk-panel">
                                 <ul class="uk-nav uk-nav-default">
                                     <li class="item-281"><a href="/karta-sajta"> Карта сайта</a></li>
-                                    <li class="item-282"><a href="/obratnyj-zvonok"> Обратный звонок</a></li>
-                                    <li class="item-283"><a href="/kredit"> Рассрочка и кредит</a></li>
-                                    <li class="item-284"><a href="/bystryj-zakaz"> Быстрый заказ</a></li>
+                                    <li class="item-282"><a href="{{route('obratnyj-zvonok')}}"> Обратный звонок</a></li>
+                                    <li class="item-283"><a href="{{route('kredit')}}"> Рассрочка и кредит</a></li>
+                                    <li class="item-284"><a href="{{route('bystryj-zakaz')}}"> Быстрый заказ</a></li>
                                     <li class="item-437"><a href="/wholesale"> Запрос оптовых цен</a></li>
-                                    <li class="item-475"><a href="/search"> Поиск по параметрам</a></li>
-                                    <li class="item-769"><a href="/ajax-search"> Поиск товаров</a></li>
-                                    <li class="item-574"><a href="/whatsapp"> WhatsApp</a></li>
+                                    <!-- <li class="item-475"><a href="/search"> Поиск по параметрам</a></li>
+                                    <li class="item-769"><a href="/ajax-search"> Поиск товаров</a></li> -->
+                                    <li class="item-574"><a href="{{route('whatsapp')}}"> WhatsApp</a></li>
                                     <li class="item-1049"><a href="/credit"> Кредит</a></li>
                                     <li class="item-1089"><a href="/menu"> Меню</a></li>
                                     <li class="item-1199"><a href="/order"> Заказ</a></li>

@@ -42,27 +42,59 @@
             </div>
         </div>
         @if (isset($promotions) && isset($ptypes))
-            <div class="container my-5" x-data='promotions({!! json_encode(\App\Http\Resources\PromotionType::collection($ptypes), JSON_UNESCAPED_UNICODE) !!})'>
-                <ul class="m-0 p-0 mb-5 flex gap-2.5 items-center justify-center flex-wrap text-sm">
-                    <li class="rounded py-0.5 px-1.5 "
-                        :class="!ptype ? 'bg-green-400 text-white' : 'bg-gray-200 hover:bg-gray-300'">
-                        <a class="subnavstyle" href="#" role="button" x-on:click.prevent="ptype=null">Все</a>
-                    </li>
-                    <template x-for="(t,cdx) in ptypes">
-                        <li class="rounded py-0.5 px-1.5 "
-                            :class="ptype && ptype.id === t.id ? 'bg-green-400 text-white' :
-                                'bg-gray-200 hover:bg-gray-300'">
-                            <a class="subnavstyle" href="#" x-on:click.prevent="ptype=t" role="button"
-                                x-text="t.title.replace(/xiaomi/ig, '')"></a>
-                        </li>
-                    </template>
-                </ul>
-                <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2.5">
-                    @foreach ($promotions as $tizer)
-                        @include('promotions._tizer')
-                    @endforeach
+        <style>
+            .hidden { display: none; }
+        </style>
+        <div class="container my-5">
+            <ul class="m-0 p-0 mb-5 flex gap-2.5 items-center justify-center flex-wrap text-sm">
+                <li class="rounded py-0.5 px-1.5 bg-gray-200 hover:bg-gray-300" onclick="filterTizers('all', this)">
+                    <a class="subnavstyle" href="#" role="button">Все</a>
+                </li>
+                @foreach($ptypes as $ptype)
+                <li class="rounded py-0.5 px-1.5 bg-gray-200 hover:bg-gray-300" onclick="filterTizers('{{$ptype->id}}', this)">
+                    <a class="subnavstyle" href="#" role="button">{{$ptype->title}}</a>
+                </li>
+                @endforeach
+            </ul>
+            <div class="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-2.5" id="tizerContainer">
+                @foreach ($promotions as $tizer)
+                <div class="tizer" data-type="{{$tizer->is_type}}">
+                    @include('promotions._tizer')
                 </div>
+                @endforeach
             </div>
+        </div>
+        <script>
+        function filterTizers(type, element) {
+            var tizers = document.querySelectorAll('#tizerContainer .tizer');
+            var items = document.querySelectorAll('ul > li');
+    
+            // Убираем класс активного состояния у всех элементов <li>
+            items.forEach(function(item) {
+                item.classList.remove('bg-green-400', 'text-white');
+                item.classList.add('bg-gray-200', 'hover:bg-gray-300');
+            });
+    
+            // Добавляем класс активного состояния текущему элементу <li>
+            element.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+            element.classList.add('bg-green-400', 'text-white');
+    
+            // Фильтрация тизеров
+            tizers.forEach(function(tizer) {
+                if (type === 'all' || tizer.getAttribute('data-type') === type) {
+                    tizer.classList.remove('hidden');
+                } else {
+                    tizer.classList.add('hidden');
+                }
+            });
+        }
+    
+        // Default to show all tizers on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            var allButton = document.querySelector('li[onclick^="filterTizers(\'all\'"]');
+            filterTizers('all', allButton);
+        });
+        </script>
         @endif
         @if (isset($products))
             <div class="container my-5" x-data="products">
@@ -89,4 +121,5 @@
             </div>
         @endif
     </div>
+    
 </x-app-layout>

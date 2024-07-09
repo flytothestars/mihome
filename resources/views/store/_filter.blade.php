@@ -7,7 +7,7 @@
                 d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
         </svg>
     </a>
-    <form class="p-1 bg-white rounded-lg overflow-hidden shadow-lg" style="box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);" x-ref="filterform"
+    <form class="p-1 bg-white rounded-lg overflow-hidden shadow-lg p-3" style="box-shadow: 2px 2px 16px 3px rgb(0 0 0 / .1);" x-ref="filterform"
         x-bind:class="{ 'hidden lg:block': !filterOpened }"
         action="{{ $category ? $category->url : 'no-category' }}/filter">
         <div class="fixed lg:hidden inset-0 bg-black bg-opacity-25 z-30"></div>
@@ -17,7 +17,7 @@
                 <div class="flex items-center justify-between px-4 lg:px-0 text-gray-900 mb-6">
                     <h2 class="text-lg font-bold">Фильтры</h2>
                     <button type="button" x-on:click="filterOpened=false"
-                        class="lg:hidden -mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2">
+                        class="lg:hidden -mr-2 flex h-10 w-10 items-center btn-all justify-center rounded-md bg-white p-2">
                         <span class="sr-only">Закрыть</span>
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             aria-hidden="true">
@@ -49,15 +49,17 @@
                             </div>
                         </div>
                         <div class="flex justify-between items-center py-5">
-                            <div>
-                                <input type="text" maxlength="8" x-on:input="mintrigger" value="{{$minpricetext}} ₸"
-                                    name="minprice" class="border border-gray-200 rounded text-center" style="width: 115px;">
-                            </div>
-                            <div>
-                                <input type="text" maxlength="8" x-on:input="maxtrigger" value="{{$maxpricetext}} ₸"
-                                    name="maxprice" class="px-3 py-2 border border-gray-200 rounded text-center" style="width: 115px;">
-                            </div>
-                        </div>
+        <div>
+            <input type="text" maxlength="8" x-on:input="mintrigger" x-model="formatNumber(minprice)" name="minprice"
+                class="border border-gray-200 rounded text-center" style="width: 115px;">
+            <!-- <div x-text="formatNumber(minprice)"></div> -->
+        </div>
+        <div>
+            <input type="text" maxlength="8" x-on:input="maxtrigger" x-model="formatNumber(maxprice)" name="maxprice"
+                class="px-3 py-2 border border-gray-200 rounded text-center" style="width: 115px;">
+            <!-- <div x-text="formatNumber(maxprice)"></div> -->
+        </div>
+    </div>
                     </div>
                 </div>
                 @if ($filters)
@@ -74,7 +76,7 @@
                             <h3 class="-my-3 flow-root">
                                 <!-- Expand/collapse section button -->
                                 <button type="button"
-                                    class="text-left flex w-full items-center justify-between bg-white py-3 text-sm text-gray-500 lg:opacity-70 hover:opacity-100"
+                                    class="text-left btn-all flex w-full items-center justify-between bg-white py-3 text-sm text-gray-500 lg:opacity-70 hover:opacity-100"
                                     x-on:click="opened=!opened">
                                     <span class="font-bold text-base text-gray-900">{{ $title }}</span>
                                     <span class="ml-6 flex items-center">

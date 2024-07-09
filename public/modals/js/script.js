@@ -1,7 +1,7 @@
 /**
  * @package         Modals
  * @version         14.0.1PRO
- * 
+ *
  * @author          Peter van Westen <info@regularlabs.com>
  * @link            https://regularlabs.com
  * @copyright       Copyright © 2023 Regular Labs All Rights Reserved
@@ -85,20 +85,20 @@ import {Helper} from './modules/helper.js?14.0.1.p';
                         <div data-modals-element="container" data-modals-close-on-click>
                             <div data-modals-element="main" data-modals-close-on-click>
                                 <div data-modals-element="left">
-                                    <button type="button" data-modals-element="previous" class="hidden" aria-label="${Joomla.Text._('MDL_MODALTXT_PREVIOUS')}" data-modals-taborder="3"></button>
+                                    <button type="button" data-modals-element="previous" class="hidden btn-all" aria-label="${Joomla.Text._('MDL_MODALTXT_PREVIOUS')}" data-modals-taborder="3"></button>
                                 </div>
                                 <div data-modals-element="center" data-modals-close-on-click>
                                     <div data-modals-element="slides" data-modals-close-on-click></div>
                                 </div>
                                 <div data-modals-element="right">
-                                    <button type="button" data-modals-element="next" class="hidden" aria-label="${Joomla.Text._('MDL_MODALTXT_NEXT')}" data-modals-taborder="2"></button>
+                                    <button type="button" data-modals-element="next" class="hidden btn-all" aria-label="${Joomla.Text._('MDL_MODALTXT_NEXT')}" data-modals-taborder="2"></button>
                                 </div>
                             </div>
                             <div data-modals-element="pagination-bar" data-modals-close-on-click>
                                 <div data-modals-element="pagination"></div>
                             </div>
                             <div data-modals-element="close-bar" data-modals-close-on-click>
-                                <button type="button" data-modals-element="close" class="hidden" aria-label="${Joomla.Text._('MDL_MODALTXT_CLOSE')}" data-modals-taborder="1"></button>
+                                <button type="button" data-modals-element="close" class="hidden btn-all" aria-label="${Joomla.Text._('MDL_MODALTXT_CLOSE')}" data-modals-taborder="1"></button>
                             </div>
                         </div>
                     </div>

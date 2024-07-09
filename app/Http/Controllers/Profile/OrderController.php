@@ -19,6 +19,15 @@ class OrderController extends Controller
         ]);
     }
 
+    public function favorites(Request $request): View
+    {
+        return view('profile.favorites.index', [
+            'user' => $request->user(),
+            'favorites' => $request->user()->favorites,
+        ]);
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      */

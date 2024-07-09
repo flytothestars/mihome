@@ -32,6 +32,31 @@ class PageController extends Controller
         return view('pages.index', $data);
     }
 
+    public function whatsappPage()
+    {
+        return view('pages.whatsapp');
+    }
+
+    public function obratnyjZvonokPage()
+    {
+        return view('pages.obratnyj-zvonok');
+    }
+
+    public function kreditPage()
+    {
+        return view('pages.kredit');
+    }
+
+    public function bystryjZakazPage()
+    {
+        return view('pages.bystryj-zakaz');
+    }
+
+    public function wholesalePage()
+    {
+        return view('pages.wholesale');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -70,6 +95,7 @@ class PageController extends Controller
                 ->where('active_to', '>', now())
                 ->where('active_from', '<', now())
                 ->get();
+            // dd($data);
             $data['ptypes'] = PromotionType::all();
         }
         if ($page->alias == 'xiaomi-chernaya-pyatnitsa-2023') {

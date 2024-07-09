@@ -10,7 +10,7 @@
             <input class="" type="text" name="phone" value="{{ old('phone', '') }}" placeholder="Номер телефона"
                 title="Введите ваш номер телефона" x-mask="+7 (999) 999 99 99" wire:model="phone">
             <x-input-error :messages="$errors->get('phone')" class="mt-2" />
-            <button type="submit" class="notify-button uk-button uk-button-primary validate">Предзаказ</button>
+            <button type="submit" class="notify-button uk-button uk-button-primary validate btn-all">Предзаказ</button>
         </form>
         <p><b>Обратите внимание:</b></p>
         <ul>

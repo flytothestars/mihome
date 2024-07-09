@@ -17,8 +17,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        $barcode = DNS1D::getBarcodeHTML('123456789', 'C39');
-        // dd($request->user());
+        $barcode = DNS1D::getBarcodeHTML($request->user()->phone, 'C39');
         return view('profile.edit', [
             'user' => $request->user(),
             'barcode' => $barcode

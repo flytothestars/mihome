@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Spatie\SchemaOrg\Organization;
 use Spatie\SchemaOrg\Schema;
+use App\Models\ViewedProduct;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class Controller extends BaseController
 {
@@ -91,6 +94,12 @@ class Controller extends BaseController
             return ResourcesFooterInfo::collection($footerAdvs)->resolve();
         });
         View::share('footer_advs', $footerAdvs);
+
+        $viewedProduct = ViewedProduct::where('user_id', Auth::check() ? Auth::id() : Session::getId())
+            ->distinct('product_id')
+            ->get();
+        // dd($viewedProduct[0]->product);
+        View::share('viewedProduct', $viewedProduct);
 
         return parent::callAction($method, $parameters);
     }

@@ -93,6 +93,7 @@ return [
     'present' => 'Поле :attribute должно присутствовать.',
     'regex' => 'Поле :attribute имеет ошибочный формат.',
     'required' => 'Поле :attribute обязательно для заполнения.',
+    'current_password' => 'Поле не совпадает текущим паролем.',
     'required_if' => 'Поле :attribute обязательно для заполнения, когда :other равно :value.',
     'required_unless' => 'Поле :attribute обязательно для заполнения, когда :other не равно :values.',
     'required_with' => 'Поле :attribute обязательно для заполнения, когда :values указано.',

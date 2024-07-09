@@ -3,7 +3,7 @@
         <div class="uk-h3 uk-heading-bullet uk-margin uk-visible@m">
             Популярные товары
         </div>
-        <div class="grid grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-2 gap-2.5 p-1">
             @foreach ($populars as $tizer)
                 @include('store._infotizer')
             @endforeach

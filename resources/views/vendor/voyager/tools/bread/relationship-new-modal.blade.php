@@ -4,7 +4,7 @@
 		<div class="modal-dialog relationship-panel">
 		    <div class="model-content">
 		        <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal"
+	                <button type="button" class="close btn-all" data-dismiss="modal"
 	                        aria-hidden="true">&times;</button>
 	                <h4 class="modal-title"><i class="voyager-heart"></i> {{ \Illuminate\Support\Str::singular(ucfirst($table)) }}
 					{{ __('voyager::database.relationship.relationships') }} </h4>
@@ -89,9 +89,9 @@
 			    </div>
 			    <div class="modal-footer">
 			    	<div class="relationship-btn-container">
-			    		<button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::database.relationship.cancel') }}</button>
+			    		<button type="button" class="btn btn-all btn-default" data-dismiss="modal">{{ __('voyager::database.relationship.cancel') }}</button>
 	                    @if(isset($dataType->id))
-	                    	<button class="btn btn-danger btn-relationship"><i class="voyager-plus"></i> <span>{{ __('voyager::database.relationship.add_new') }}</span></button>
+	                    	<button class="btn btn-all btn-danger btn-relationship"><i class="voyager-plus"></i> <span>{{ __('voyager::database.relationship.add_new') }}</span></button>
 	                	@endif
 	                </div>
 			    </div>

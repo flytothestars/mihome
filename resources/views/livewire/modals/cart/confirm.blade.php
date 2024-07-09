@@ -7,10 +7,10 @@
             <div class="grid grid-col-2 gap-2.5">
                 <button
                     @if ($offer->product->offers()->count() > 1) x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.cart', arguments: { product: {{ $offer->product->id }} }})" @else x-on:click.prevent="Livewire.dispatch('closeModal')" @endif
-                    class="rounded-l px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base">Продолжить
+                    class="btn-all rounded-l px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base">Продолжить
                     покупки</button>
                 <a href="/cart"
-                    class="rounded-l justify-center items-center px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base flex gap-2.5">
+                    class="btn-all rounded-l justify-center items-center px-1.5 lg:px-2 py-2 lg:py-3 text-white bg-green-200 hover:bg-green-250 text-sm lg:text-base flex gap-2.5">
                     <svg class="w-5 h-5 shrink-0" viewBox="0 0 20 20">
                         <circle cx="7.3" cy="17.3" r="1.4" fill="currentColor"></circle>
                         <circle cx="13.3" cy="17.3" r="1.4" fill="currentColor"></circle>

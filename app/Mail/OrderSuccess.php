@@ -32,7 +32,7 @@ class OrderSuccess extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Success',
+            subject: 'Заказ успешно оформлен',
         );
     }
 

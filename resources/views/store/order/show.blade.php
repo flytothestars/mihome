@@ -64,44 +64,12 @@
                         <span class="values"> No data </span>
                     </span> 
                     <span class="grouped"> 
-                        <span class="titles">Страна</span> 
-                        <span class="values"> No data </span>
-                    </span> 
-                    <span class="grouped"> 
                         <span class="titles">Телефон</span> 
                         <span class="values">{{ $order->phone }}</span> 
                     </span> 
                 </div>
             </div>
             <div class="ship-to uk-width-1-2@l uk-width-1-1@s uk-border-box uk-float-left">
-                <h4 class="uk-margin-bottom-remove">Доставить в</h4>
-                <hr class="uk-hr">
-                <div class="spacer"> 
-                    <span class="grouped"> 
-                        <span class="titles">Имя</span> 
-                        <span class="values">{{ $order->name }}</span> 
-                    </span> 
-                    <span class="grouped"> 
-                        <span class="titles">Фамилия</span> 
-                        <span class="values">{{ $order->lastname }}</span> 
-                    </span> 
-                    <span class="grouped"> 
-                        <span class="titles">Адрес</span> 
-                        <span class="values"> No data </span>
-                    </span> 
-                    <span class="grouped"> 
-                        <span class="titles">Город</span> 
-                        <span class="values"> No data </span>
-                    </span> 
-                    <span class="grouped"> 
-                        <span class="titles">Страна</span> 
-                        <span class="values"> No data </span> 
-                    </span> 
-                    <span class="grouped"> 
-                        <span class="titles">Телефон</span> 
-                        <span class="values">{{ $order->phone }}</span>
-                    </span> 
-                </div>
             </div>
         </div>
         <hr class="uk-hr">
@@ -113,12 +81,9 @@
                     <div class="uk-width-1-5 uk-visible@l uk-first-column">
                         <div class="thumbnail uk-text-center"> <a href="{{$item->offer->url}}">
                                 <picture>
-                                    <source type="image/webp"
-                                        srcset="/templates/yootheme/cache/db/xiaomi-yeelight-drawer-light_1_366x431-db7aa6f7.webp 366w"
-                                        sizes="(min-width: 366px) 366px"> <img
-                                        class="vmuikit-thumbnail vmuikit-thumbnail-mini" border=""
+                                    <img class="vmuikit-thumbnail vmuikit-thumbnail-mini" border=""
                                         alt="xiaomi-yeelight-drawer-light_1.jpg"
-                                        src="rent2go.kz/storage/{{ $item->offer->product->images[0]->link }}"
+                                        src="https://rent2go.kz/storage/{{ $item->offer->product->images[0]->link }}"
                                         width="366" height="431" loading="lazy">
                                 </picture>
                             </a> </div>

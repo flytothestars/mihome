@@ -1,5 +1,5 @@
 @if (setting('shop.kaspi0024') && ($offer ? $offer?->kaspi : $product->offers()->where('kaspi', true)->exists()))
-<div class="leading-none flex items-center gap-1 lg:py-2 px-4 rounded justify-center transition bg-red-500 hover:shadow-lg min-h-[2.75rem] text-left">
+<div class="btn-all leading-none flex items-center gap-1 lg:py-2 px-4 rounded justify-center transition bg-red-500 hover:shadow-lg min-h-[2.75rem] text-left">
     <!-- <div class="relative w-40"
         x-data='{
             init(){
@@ -9,10 +9,10 @@
         }'
         > -->
     <a rel="nofollow"
-        class="leading-none w-40 gap-1 lg:py-2 px-2 lg:px-4 rounded transition bg-red-500 text-white hover:shadow-lg flex justify-start text-sm items-center"
+        class="leading-none w-50 gap-1 btn-all  px-2 lg:px-4 rounded transition bg-red-500 text-white hover:shadow-lg flex justify-start text-sm items-center"
         x-on:click.prevent="Livewire.dispatch('openModal',
         { component: 'modals.kaspi' , arguments: { product: {{ $product->id }}, offer:
-        {{ $offer ? $offer->id : 'null' }} }})" href="{{ $offer ? $offer->kaspi_link : '#' }}" target="_blank"
+        {{ $offer ? $offer->id : 'null' }}, kaspi: true }})" href="{{ $offer ? $offer->kaspi_link : '#' }}" target="_blank"
         style="text-decoration: none;">
         <div class="kaspi_button_logo w-7 h-7"></div>
         <span>

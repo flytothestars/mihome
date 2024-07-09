@@ -41,6 +41,10 @@
                     </div>
 
                     <div class="flex items-center justify-between gap-4 mt-4">
+                        
+                        <x-primary-button class="uk-button uk-button-primary">
+                            {{ __('Log in') }}
+                        </x-primary-button>
 
                         @if (Route::has(app()->getLocale() . '.register'))
                             <a href="{{ route(app()->getLocale() . '.register') }}">
@@ -49,10 +53,6 @@
                                 </x-secondary-button>
                             </a>
                         @endif
-
-                        <x-primary-button class="uk-button uk-button-primary">
-                            {{ __('Log in') }}
-                        </x-primary-button>
 
                     </div>
                 </form>

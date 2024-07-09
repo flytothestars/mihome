@@ -178,7 +178,10 @@ class Order extends Component
         $admins = User::where('role_id', 1)->get();
         foreach($admins as $admin)
         {
-            SendMailAdminJob::dispatch($cart,$this->order, $admin);
+            try {
+                SendMailAdminJob::dispatch($cart,$this->order, $admin);
+            } catch (\Throwable $th) {
+            }
         }
 
         if ($this->order) {

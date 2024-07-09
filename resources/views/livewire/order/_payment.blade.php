@@ -25,7 +25,7 @@
                     @if ($appliedCoupon) disabled="" value="{{ $appliedCoupon->code }}" @else value="{{ old('coupon', '') }}" wire:model="coupon" @endif
                     class="w-full bg-gray-75 border-gray-75 rounded" type="text" name="coupon">
                 @if (!$appliedCoupon)
-                    <x-primary-button wire:click="submitCoupon" type="button">Применить</x-primary-button>
+                    <x-primary-button wire:click="submitCoupon" class="btn-all" type="button">Применить</x-primary-button>
                 @endif
             </div>
             <x-input-error :messages="$errors->get('coupon')" class="mt-2" />

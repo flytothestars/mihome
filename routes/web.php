@@ -75,11 +75,19 @@ Route::group(['as' => 'ru.', 'middleware' => 'locale.ru'], function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         Route::group(['as' => 'profile.', 'prefix' => 'profile'], function () {
             Route::resource('orders', Profile\OrderController::class)->only(['index', 'show']);
+            Route::get('favorites', [Profile\OrderController::class, 'favorites'])->name('favorites');
         });
     });
 
     Route::get('/informaciya', [PageController::class, 'index'])->name('informaciya.index');
     Route::get('/informaciya/{page}', [PageController::class, 'show'])->name('informaciya.show');
+
+    Route::get('/whatsapp', [PageController::class, 'whatsappPage'])->name('whatsapp');
+    Route::get('/obratnyj-zvonok', [PageController::class, 'obratnyjZvonokPage'])->name('obratnyj-zvonok');
+    Route::get('/kredit', [PageController::class, 'kreditPage'])->name('kredit');
+    Route::get('/bystryj-zakaz', [PageController::class, 'bystryjZakazPage'])->name('bystryj-zakaz');
+    Route::get('/wholesale', [PageController::class, 'wholesalePage'])->name('wholesale');
+
 
     Route::resource('/manufacturers', BrandController::class)->only(['index']);
     Route::get('/manufacturers/{manufacturer}/{category?}', [BrandController::class, 'show'])->name('manufacturers.show');
@@ -99,6 +107,8 @@ Route::group(['as' => 'ru.', 'middleware' => 'locale.ru'], function () {
     Route::get('/store/{path}/filter/{filters}', [CatalogController::class, 'category'])->where('path', '^[a-zA-Z0-9-_\/]+$')->where('filters', '^[a-zA-Z0-9-_\/]+$')->name('category.filter');
     Route::get('/store/{path}', [CatalogController::class, 'category'])->where('path', '^[a-zA-Z0-9-_\/]+$')->name('category');
     Route::get('/product/{product}', [CatalogController::class, 'product'])->name('product');
+    Route::get('/product/favorite/{product}', [CatalogController::class, 'favorite'])->name('favorite');
+    Route::get('/product/unfavorite/{product}', [CatalogController::class, 'unfavorite'])->name('unfavorite');
 
     Route::get('/reviews', [ReviewController::class, 'index'])->name('reviews.index');
     Route::post('/reviews/files', [ReviewController::class, 'files'])->name('reviews.files');

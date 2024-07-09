@@ -79,7 +79,7 @@
                 <div class=" items-center gap-4 hidden lg:flex">
                     <div class="flex items-center gap-4">
                         <a href="tel:77750070625"
-                            x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.whatsapp'})"
+                            x-on:click.prevent="Livewire.dispatch('openModal', { component: 'modals.whats-app'})"
                             class="flex items-center gap-1 transition hover:text-gray-300">
                             <svg class="w-5 h-auto" viewBox="0 0 20 20">
                                 <path fill="none" stroke="currentColor"

@@ -98,7 +98,7 @@
 
                         <div class="panel-footer">
                             @section('submit-buttons')
-                                <button type="submit" class="btn btn-primary save">{{ __('voyager::generic.save') }}</button>
+                                <button type="submit" class="btn btn-all btn-primary save">{{ __('voyager::generic.save') }}</button>
                             @stop
                             @yield('submit-buttons')
                         </div>
@@ -128,8 +128,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
-                    <button type="button" class="btn btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
+                    <button type="button" class="btn btn-all btn-default" data-dismiss="modal">{{ __('voyager::generic.cancel') }}</button>
+                    <button type="button" class="btn btn-all btn-danger" id="confirm_delete">{{ __('voyager::generic.delete_confirm') }}</button>
                 </div>
             </div>
         </div>

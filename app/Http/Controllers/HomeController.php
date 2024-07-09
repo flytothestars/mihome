@@ -9,6 +9,7 @@ use App\Models\Advantage;
 use App\Models\Banner;
 use App\Models\OurFavorite;
 use App\Models\Product;
+use App\Models\ViewedProduct;
 use App\Models\Promotion;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Spatie\SchemaOrg\Schema;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -54,7 +56,8 @@ class HomeController extends Controller
         $data['favorites'] = OurFavorite::all();
         $data['latests'] = Product::latest()->limit(32)->get();
 
-
+        $data['viewedProduct'] = ViewedProduct::where('user_id', Auth::check() ? Auth::id() : Session::getId())->get();
+        
         return view('home', $data);
     }
     /**

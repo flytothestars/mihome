@@ -33,5 +33,30 @@ export default (props) => ({
                 }
             });
         }
+        new Swiper(this.$refs.footers, {
+            loop: true,
+            navigation: {
+              nextEl: '.swiper-nextfooter',
+              prevEl: '.swiper-prevfooter',
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            // slidesPerView: 5,
+            slidesPerView: 1,
+            spaceBetween: 15,
+            breakpoints: {
+                640: {
+                    slidesPerView: 3,
+                  },
+                  960: {
+                    slidesPerView: 4,
+                  },
+                  1480: {
+                    slidesPerView: 6,
+                  },
+            }
+          });
     }
 })

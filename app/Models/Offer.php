@@ -51,6 +51,11 @@ class Offer extends Model
     |
     */
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
     public function price(): Attribute
     {
         return Attribute::make(

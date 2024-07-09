@@ -42,7 +42,7 @@
                 </div>
                 <x-input-error :messages="$errors->get('phone')" class="mt-2" />
             </div>
-            <button type="submit" class="notify-button uk-button uk-button-primary validate">Подтвердить заказ</button>
+            <button type="submit" class="notify-button uk-button uk-button-primary validate btn-all">Подтвердить заказ</button>
         </form>
     </div>
 </div>

@@ -2,7 +2,7 @@
     <div class="uk-h3 uk-heading-bullet uk-margin uk-visible@m">
         Подобные товары
     </div>
-    <div class="grid grid-cols-2 gap-2.5">
+    <div class="grid grid-cols-2 gap-2.5 p-1">
         @if ($product->relatedProducts()->count())
             @foreach ($product->relatedProducts as $tizer)
                 @include('store._infotizer')
